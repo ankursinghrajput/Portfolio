@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <title>Books · Ankur Singh</title>
+    <meta name="description" content="A curated list of books on mindset, growth, and curiosity that have shaped my perspective.">
+    <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#08090a" media="(prefers-color-scheme: dark)">
+
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="/assets/favicon.svg">
+    <link rel="apple-touch-icon" href="/assets/favicon.svg">
+    <link rel="mask-icon" href="/assets/favicon.svg" color="#8b8fff">
+
+    <link rel="stylesheet" href="/styles.css?v=2026-06-02-responsive">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'light') document.documentElement.classList.add('light-mode');
+        else if (savedTheme === 'dark') document.documentElement.classList.add('dark-mode');
+    </script>
+    <style>
+        .books-page {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+            min-height: 100vh;
+        }
+
+        .books-header {
+            margin-bottom: 56px;
+        }
+
+        .books-title {
+            font-size: clamp(36px, 5.5vw, 60px);
+            font-weight: 500;
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+            color: var(--ink);
+            margin-bottom: 18px;
+            text-wrap: balance;
+            max-width: 18ch;
+        }
+
+        .books-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--ink-3);
+        }
+
+        .books-lead {
+            font-family: 'Instrument Sans', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--ink-2);
+            max-width: 52ch;
+        }
+
+        .books-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .book-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 28px 28px 24px;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 24px;
+            align-items: start;
+            transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+        }
+
+        .book-card:hover {
+            border-color: var(--line-strong);
+            background: var(--bg-hover);
+        }
+
+        .book-icon {
+            width: 44px;
+            height: 58px;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-4);
+            flex-shrink: 0;
+            transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+        }
+
+        .book-card:hover .book-icon {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .book-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .book-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .book-num {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--ink-4);
+            letter-spacing: 0.06em;
+        }
+
+        .book-badge {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent-ink);
+            background: var(--accent-soft);
+            border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+            padding: 2px 8px;
+            border-radius: 999px;
+            line-height: 1.4;
+        }
+
+        .book-title-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .book-name {
+            font-size: 19px;
+            font-weight: 500;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+            line-height: 1.25;
+        }
+
+        .book-author {
+            font-size: 14px;
+            color: var(--ink-3);
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .book-notes {
+            font-family: 'Instrument Sans', system-ui, sans-serif;
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: var(--ink-2);
+            margin-top: 8px;
+        }
+
+        .books-footer {
+            margin-top: 56px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .books-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink);
+            font-weight: 500;
+            font-size: 13px;
+            transition: color 0.15s var(--ease);
+        }
+        .books-back:hover { color: var(--accent); }
+        .books-back svg {
+            width: 13px; height: 13px;
+            transition: transform 0.15s var(--ease);
+        }
+        .books-back:hover svg { transform: translateX(-3px); }
+
+        @media (max-width: 640px) {
+            .books-page { padding: 100px 20px 64px; }
+            .book-card {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                padding: 22px;
+            }
+            .book-icon { display: none; }
+        }
+        body.preload,
+        body.preload * {
+            transition: none !important;
+        }
+    </style>
+</head>
+<body class="preload">
+    <nav class="nav" id="nav">
+        <a href="/" class="nav-logo">Ankur Singh</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="/#work">Projects</a>
+                <a href="/#experience">Experience</a>
+                <a href="/#contact">Contact</a>
+
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+                <span class="theme-toggle-track">
+                    <span class="theme-toggle-knob">
+                        <span class="theme-toggle-icon-sun">
+                            <svg viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 8 0zm0 13a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 8 13zM2.343 2.343a.75.75 0 0 1 1.061 0l1.06 1.061a.75.75 0 0 1-1.06 1.06l-1.06-1.06a.75.75 0 0 1 0-1.06zm9.193 9.193a.75.75 0 0 1 1.06 0l1.061 1.06a.75.75 0 0 1-1.06 1.061l-1.061-1.06a.75.75 0 0 1 0-1.06zm-9.193 0a.75.75 0 0 1 0 1.06l-1.061 1.06a.75.75 0 0 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.062 0zm9.193-9.193a.75.75 0 0 1 0 1.06l-1.06 1.061a.75.75 0 1 1-1.061-1.06l1.06-1.061a.75.75 0 0 1 1.06 0zM0 8a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 8zm13 0a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5h-1.5A.75.75 0 0 1 13 8z"/>
+                            </svg>
+                        </span>
+                        <span class="theme-toggle-icon-moon">
+                            <svg viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .812.275.79.79 0 0 1-.056.972 7.6 7.6 0 0 1-6.4 3.19C3.668 16 0 12.315 0 7.828c0-3.765 2.583-6.963 6.002-7.55a.78.78 0 0 1 .832.22z"/>
+                            </svg>
+                        </span>
+                    </span>
+                    <span class="theme-toggle-glass-reflection"></span>
+                </span>
+            </button>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+        <nav class="mobile-menu-items">
+            <a href="/#work">Projects</a>
+            <a href="/#experience">Experience</a>
+            <a href="/#contact">Contact</a>
+
+            <a href="/Ankur-Singh-Resume.pdf" target="_blank" rel="noopener" id="mobileResumeBtn">Résumé</a>
+        </nav>
+    </div>
+
+    <main class="books-page">
+        <header class="books-header reveal">
+            <div class="section-head">
+                <span class="section-kicker">·</span>
+                <span class="section-title">Bookshelf</span>
+            </div>
+            <h1 class="books-title">Books that shaped <em>my thinking.</em></h1>
+            <p class="books-lead">
+                A small collection of reads on mindset, growth, and curiosity that I keep coming back to.
+            </p>
+        </header>
+
+        <div class="books-list">
+            <!-- Currently Reading -->
+            <div class="book-card reveal">
+                <div class="book-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+                <div class="book-info">
+                    <div class="book-meta">
+                        <span class="book-num">01</span>
+                        <span class="book-badge">Currently Reading</span>
+                    </div>
+                    <div class="book-title-row">
+                        <h3 class="book-name">Why Bharat Matters</h3>
+                        <span class="book-author">S. Jaishankar</span>
+                    </div>
+                    <p class="book-notes">
+                        A compelling look at India's place in the modern world order through diplomacy, history, and civilizational identity. It's reshaping how I think about geopolitics and national purpose.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Book 2 -->
+            <div class="book-card reveal">
+                <div class="book-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+                <div class="book-info">
+                    <div class="book-meta">
+                        <span class="book-num">02 · Mindset</span>
+                    </div>
+                    <div class="book-title-row">
+                        <h3 class="book-name">The Power of Your Subconscious Mind</h3>
+                        <span class="book-author">Joseph Murphy</span>
+                    </div>
+                    <p class="book-notes">
+                        A timeless guide to harnessing the power of belief and mental programming. It shifted my perspective on how deeply our inner thoughts shape our outer reality and daily decisions.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Book 3 -->
+            <div class="book-card reveal">
+                <div class="book-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+                <div class="book-info">
+                    <div class="book-meta">
+                        <span class="book-num">03 · Curiosity</span>
+                    </div>
+                    <div class="book-title-row">
+                        <h3 class="book-name">A Brief History of Time</h3>
+                        <span class="book-author">Stephen Hawking</span>
+                    </div>
+                    <p class="book-notes">
+                        A fascinating exploration of the universe — from black holes to the Big Bang — written with extraordinary clarity. It reignited my sense of wonder and reminded me why curiosity is the most important trait.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Book 4 -->
+            <div class="book-card reveal">
+                <div class="book-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+                <div class="book-info">
+                    <div class="book-meta">
+                        <span class="book-num">04 · Growth</span>
+                    </div>
+                    <div class="book-title-row">
+                        <h3 class="book-name">Atomic Habits</h3>
+                        <span class="book-author">James Clear</span>
+                    </div>
+                    <p class="book-notes">
+                        An insightful breakdown of how tiny, daily routines compound into massive results over time. It's helped me structure both my work habits and personal routines for consistency and long-term growth.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="books-footer">
+            <span>© 2026 Ankur Singh.</span>
+            <a href="/" class="books-back">
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6H3M6 9L3 6l3-3"/></svg>
+                Back to home
+            </a>
+        </footer>
+    </main>
+
+    <script>
+        // Lightweight script — nav, theme toggle, mobile menu only. No WebGL, no PDF.js.
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
+        nav.classList.toggle('scrolled', window.scrollY > 8);
+
+        // Mobile menu
+        const navToggle = document.getElementById('navToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        function setMenuOpen(open) {
+            mobileMenu.classList.toggle('open', open);
+            navToggle.classList.toggle('active', open);
+            mobileMenu.setAttribute('aria-hidden', String(!open));
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+        navToggle.addEventListener('click', () => setMenuOpen(!mobileMenu.classList.contains('open')));
+        mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) setMenuOpen(false); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenuOpen(false); });
+        document.querySelectorAll('.mobile-menu-items a').forEach(el => el.addEventListener('click', () => setMenuOpen(false)));
+
+        // Theme toggler
+        (function() {
+            const toggleBtn = document.getElementById('themeToggle');
+            const mobileToggleBtn = document.getElementById('mobileThemeToggle');
+            function getThemeState() {
+                return document.documentElement.classList.contains('light-mode') ||
+                    (!document.documentElement.classList.contains('dark-mode') &&
+                     window.matchMedia('(prefers-color-scheme: light)').matches);
+            }
+            function toggleTheme() {
+                const isLight = getThemeState();
+                [toggleBtn, mobileToggleBtn].forEach(btn => {
+                    if (btn) { btn.classList.remove('to-light', 'to-dark'); void btn.offsetWidth; }
+                });
+                if (isLight) {
+                    document.documentElement.classList.remove('light-mode');
+                    document.documentElement.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    [toggleBtn, mobileToggleBtn].forEach(btn => { if (btn) btn.classList.add('to-dark'); });
+                } else {
+                    document.documentElement.classList.remove('dark-mode');
+                    document.documentElement.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                    [toggleBtn, mobileToggleBtn].forEach(btn => { if (btn) btn.classList.add('to-light'); });
+                }
+            }
+            if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
+            if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', toggleTheme);
+        })();
+
+        // Enable transitions after initial paint
+        requestAnimationFrame(() => {
+            document.body.classList.remove('preload');
+        });
+
+        // Scroll reveal staggered delays and intersection observer
+        document.querySelectorAll('.book-card').forEach((card, i) => {
+            card.style.setProperty('--reveal-delay', `${i * 60}ms`);
+        });
+
+        document.body.classList.add('js-ready');
+        const revealables = document.querySelectorAll('.reveal');
+        requestAnimationFrame(() => {
+            const vh = window.innerHeight;
+            revealables.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < vh && rect.bottom > 0) {
+                    el.classList.add('visible');
+                }
+            });
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+            revealables.forEach(el => {
+                if (!el.classList.contains('visible')) revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
