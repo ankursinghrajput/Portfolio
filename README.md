@@ -1,23 +1,8 @@
-# anujsh.com
+# Ankur's Portfolio 🚀
 
-My personal portfolio website built with care and a mildly unhealthy respect for good hover states.
+My personal portfolio website and blog built with Eleventy.
 
-## Tech
-
-- Plain HTML/CSS/JS (no frameworks)
-- Google Fonts: JetBrains Mono, Outfit
-- Deployed on Netlify
-
-## Development
-
+To preview the built static site locally:
 ```bash
-# Open locally
 npx serve .
-# or
-python -m http.server 8000
 ```
-
-## Credits
-
-- Design inspiration from terminal aesthetics
-- Built with taste 🤌
