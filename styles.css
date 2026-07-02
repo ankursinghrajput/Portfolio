@@ -869,6 +869,30 @@ section {
     transform: translate(2px, -2px);
 }
 
+.project-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.project-cta-row .project-cta {
+    margin-top: 0;
+}
+
+.project-cta--live {
+    background: var(--bg-elevated);
+    border-color: var(--line);
+    color: var(--ink-2);
+}
+
+.project-cta--live:hover,
+.project-card:hover .project-cta--live {
+    background: var(--bg-hover);
+    border-color: var(--line-strong);
+    color: var(--ink);
+}
+
 /* ---- Experience ------------------------------------------ */
 .experience-list {
     display: flex;
