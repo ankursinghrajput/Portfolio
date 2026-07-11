@@ -894,6 +894,90 @@ section {
 }
 
 /* ---- Experience ------------------------------------------ */
+
+/* Section header row: title left, badge top-right */
+.experience-section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+}
+
+.experience-section-header > div:first-child {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* Total experience badge */
+.exp-total-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 6px;
+    padding: 8px 14px 8px 11px;
+    background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(94, 106, 210, 0.06) 100%);
+    border: 1px solid rgba(94, 106, 210, 0.22);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    cursor: default;
+    user-select: none;
+    text-decoration: none;
+    animation: badgePulse 3.5s ease-in-out infinite;
+}
+
+.exp-total-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(94, 106, 210, 0.18);
+    border-color: rgba(94, 106, 210, 0.4);
+    animation: none;
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(94, 106, 210, 0); }
+    50%       { box-shadow: 0 0 0 5px rgba(94, 106, 210, 0.08); }
+}
+
+.exp-total-badge__icon {
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.exp-total-badge__label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.exp-total-badge__value {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.exp-total-badge__value.updating {
+    opacity: 0;
+    transition: opacity 300ms ease;
+}
+
+.exp-total-badge__value.visible {
+    opacity: 1;
+    transition: opacity 300ms ease;
+}
+
 .experience-list {
     display: flex;
     flex-direction: column;
@@ -1761,6 +1845,16 @@ body.js-ready .reveal.visible {
 
     .project-desc {
         font-size: 13.5px;
+    }
+
+    .experience-section-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .exp-total-badge {
+        align-self: flex-start;
+        margin-top: 0;
     }
 
     .experience-card {

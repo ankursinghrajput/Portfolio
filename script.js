@@ -676,3 +676,76 @@ console.log('%cLooking under the hood? Say hi — ankursinghrajput@gmail.com', '
 requestAnimationFrame(() => {
     document.body.classList.remove('preload');
 });
+
+// ---- Total Experience Badge ------------------------------------------ //
+// Earliest start date — update this if more roles are added.
+// Format: { year: YYYY, month: 1–12 }   (month is 1-indexed)
+const EXP_START = { year: 2024, month: 11 }; // November 2024
+
+/**
+ * Calculate total experience as completed months from `start` to today,
+ * then format as human-readable string.
+ * A month is only counted once the last day of that month has passed
+ * relative to the same calendar day the role started (i.e., floor division).
+ */
+function calcExperience() {
+    const now = new Date();
+    const startDate = new Date(EXP_START.year, EXP_START.month - 1, 1); // 1st of start month
+
+    let years  = now.getFullYear()  - startDate.getFullYear();
+    let months = now.getMonth()     - startDate.getMonth();
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    // Build readable string
+    const parts = [];
+    if (years > 0)  parts.push(`${years} yr${years  !== 1 ? 's' : ''}`);
+    if (months > 0) parts.push(`${months} mo${months !== 1 ? 's' : ''}`);
+    if (parts.length === 0) parts.push('< 1 mo');
+
+    return parts.join(' ');
+}
+
+function updateExpBadge() {
+    const valueEl = document.getElementById('exp-total-value');
+    if (!valueEl) return;
+
+    const text = calcExperience();
+
+    // Animate out → update → animate in
+    valueEl.classList.add('updating');
+    valueEl.classList.remove('visible');
+
+    setTimeout(() => {
+        valueEl.textContent = text;
+        valueEl.classList.remove('updating');
+        valueEl.classList.add('visible');
+    }, 150);
+}
+
+/** Schedule the next update at the stroke of midnight (local time). */
+function scheduleExpBadgeMidnightUpdate() {
+    const now  = new Date();
+    const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 5); // 00:00:05 next day
+    const msUntilMidnight = next - now;
+
+    setTimeout(() => {
+        updateExpBadge();
+        // After the first midnight tick, repeat every 24 h
+        setInterval(updateExpBadge, 24 * 60 * 60 * 1000);
+    }, msUntilMidnight);
+}
+
+// Initialise immediately once DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        updateExpBadge();
+        scheduleExpBadgeMidnightUpdate();
+    });
+} else {
+    updateExpBadge();
+    scheduleExpBadgeMidnightUpdate();
+}
