@@ -123,7 +123,7 @@ const resumeDownloadBtn = document.getElementById('resumeDownloadBtn');
 const resumeCanvasContainer = document.getElementById('resumeCanvasContainer');
 const resumePreviewStatus = document.getElementById('resumePreviewStatus');
 
-const RESUME_URL = '/Ankur-Singh-Resume.pdf';
+const RESUME_URL = '/Ankur_singh_resume_SE.pdf';
 const PDFJS_VERSION = '4.0.379';
 const PDFJS_BASE = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}`;
 const PDFJS_MODULE = `${PDFJS_BASE}/pdf.min.mjs`;
