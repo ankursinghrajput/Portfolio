@@ -5,7 +5,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("script.js");
   eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy("Ankur-Singh-Resume.pdf");
+  eleventyConfig.addPassthroughCopy("Ankur_singh_resume_SE.pdf");
   eleventyConfig.addPassthroughCopy("books");
 
   // Human-readable date filter
